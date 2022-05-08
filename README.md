@@ -1,6 +1,6 @@
 # EventTrackerProject
 
-##API Endpoint Tests
+## API Endpoint Tests
 
 Run List
 `http://localhost:8082/api/runs`

@@ -23,6 +23,13 @@ DROP TABLE IF EXISTS `run` ;
 CREATE TABLE IF NOT EXISTS `run` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(500) NOT NULL,
+  `date` DATETIME NULL,
+  `distance` VARCHAR(45) NULL,
+  `start_time` DATETIME NULL,
+  `end_time` DATETIME NULL,
+  `calories_burned` INT NULL,
+  `comments` VARCHAR(500) NULL,
+  `heart_rate` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -42,7 +49,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rundb`;
-INSERT INTO `run` (`id`, `name`) VALUES (1, 'Open Space');
+INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`) VALUES (1, 'Open Space', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
