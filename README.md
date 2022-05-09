@@ -3,25 +3,29 @@
 ## API Endpoint Tests
 
 Run List
-`http://localhost:8082/api/runs`
+`http://34.199.50.15:8080/RunTrackerREST/api/runs`
 
 Get Run by Id
-`http://localhost:8082/api/runs/1`
+`http://34.199.50.15:8080/RunTrackerREST/api/runs/1`
 
 Create Run
-`http://localhost:8082/api/runs`
+`http://34.199.50.15:8080/RunTrackerREST/api/runs`
+
+`   {
+        "name": "Evergreen Hills"
+    }`
 
 Update Run by Id
-`http://localhost:8082/api/runs/4`
+`http://34.199.50.15:8080/RunTrackerREST/api/runs/4`
 
 Delete Run by Id
-`http://localhost:8082/api/runs/2`
+`http://34.199.50.15:8080/RunTrackerREST/api/runs/6`
 
 Search Run by Distance Range
-`http://localhost:8082/api/runs/search/distance/1/3
+`http://34.199.50.15:8080/RunTrackerREST/api/runs/search/distance/0/4`
 
 Search Run by Name or Comment
-`http://localhost:8082/api/runs/search/high`
+`http://34.199.50.15:8080/RunTrackerREST/api/runs/search/high`
 
 
 ## Description
