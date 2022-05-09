@@ -23,13 +23,14 @@ DROP TABLE IF EXISTS `run` ;
 CREATE TABLE IF NOT EXISTS `run` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(500) NOT NULL,
-  `date` DATETIME NULL,
-  `distance` VARCHAR(45) NULL,
+  `date` DATE NULL,
+  `distance` DECIMAL(5,2) NULL,
   `start_time` DATETIME NULL,
   `end_time` DATETIME NULL,
   `calories_burned` INT NULL,
   `comments` VARCHAR(500) NULL,
   `heart_rate` INT NULL,
+  `media_url` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -49,7 +50,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rundb`;
-INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`) VALUES (1, 'Open Space', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`, `media_url`) VALUES (1, 'Willow Spring Open Space', '2022-05-01', 2.1, '2022-05-01 12:00:00', '2022-05-01 12:30:00', NULL, NULL, NULL, NULL);
+INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`, `media_url`) VALUES (2, 'Heritage Hills Trail', '2022-03-01', 2.2, '2022-03-01 12:00:00', '2022-03-01 12:30:00', NULL, NULL, NULL, NULL);
+INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`, `media_url`) VALUES (3, 'Ridgegate Trail', '2022-03-03', 3.1, '2022-03-03 12:00:00', '2022-03-03 12:30:00', NULL, NULL, NULL, NULL);
+INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`, `media_url`) VALUES (4, 'Highline Canal Trail', '2022-03-04', 1.8, '2022-03-04 12:00:00', '2022-03-04 12:30:00', NULL, NULL, NULL, NULL);
+INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`, `media_url`) VALUES (5, 'Maximus Trail Park', '2022-04-01', 2.7, '2022-04-01 12:00:00', '2022-04-01 12:30:00', NULL, NULL, NULL, NULL);
+INSERT INTO `run` (`id`, `name`, `date`, `distance`, `start_time`, `end_time`, `calories_burned`, `comments`, `heart_rate`, `media_url`) VALUES (6, 'Entertainment District Trail', '2022-03-09', 2.5, '2022-03-09 12:00:00', '2022-03-09 12:30:00', NULL, 'highlight of our trip!', NULL, NULL);
 
 COMMIT;
 

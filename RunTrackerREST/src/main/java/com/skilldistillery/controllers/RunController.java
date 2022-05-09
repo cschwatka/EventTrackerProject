@@ -76,7 +76,6 @@ public class RunController {
 	}
 	
 	
-	
 	@DeleteMapping("runs/{runId}")
 	public void deleteRun(
 			@PathVariable("runId") Integer postId, 
@@ -92,4 +91,30 @@ public class RunController {
 			res.setStatus(400); // t/c perhaps overkill, no child entities
 		}
 	}
+	
+	
+	@GetMapping("runs/search/{keyword}")
+	public List<Run> getRunsByNameOrComments(
+			@PathVariable String keyword, 
+			HttpServletResponse res) {
+		List<Run> runs = runServ.findByNameLikeOrCommentsLike(keyword);
+		if (runs == null) {
+			res.setStatus(404);
+		}
+		return runs;
+
+	}
+	
+	@GetMapping("runs/search/distance/{low}/{high}")
+	public List<Run> getRunsWithinDistanceRange(
+			@PathVariable Double low,
+			@PathVariable Double high,
+			HttpServletResponse res) {
+		List<Run> runs = runServ.findByDistanceBetween(low, high);
+		if (runs == null ) {
+			res.setStatus(404);
+		}
+		return runs;
+	}
+	
 }

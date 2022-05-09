@@ -11,5 +11,7 @@ public interface RunService {
 	Run createRun(Run run);
 	boolean deleteRunById(int runId);
 	Run updateRun(int runId, Run run);
+	List<Run> findByNameLikeOrCommentsLike(String keyword);
+	List<Run> findByDistanceBetween(Double lowest, Double highest);
 
 }

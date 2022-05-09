@@ -36,6 +36,8 @@ public class Run {
 	Integer caloriesBurned;
 	
 	String comments;
+	
+	String media_url;
 
 	public Run() {
 		super();
@@ -113,11 +115,19 @@ public class Run {
 		this.comments = comments;
 	}
 
+	public String getMedia_url() {
+		return media_url;
+	}
+
+	public void setMedia_url(String media_url) {
+		this.media_url = media_url;
+	}
+
 	@Override
 	public String toString() {
 		return "Run [id=" + id + ", name=" + name + ", date=" + date + ", distance=" + distance + ", startTime="
 				+ startTime + ", endTime=" + endTime + ", heartRate=" + heartRate + ", caloriesBurned=" + caloriesBurned
-				+ ", comments=" + comments + "]";
+				+ ", comments=" + comments + ", media_url=" + media_url + "]";
 	}
 
 	@Override

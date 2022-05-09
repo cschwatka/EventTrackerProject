@@ -58,12 +58,20 @@ public class RunServiceImpl implements RunService {
 		}
 		
 		managed.setName(run.getName());;
-		
 		repo.saveAndFlush(managed);
-		
 		return run;
 	
+	}
 	
+	@Override
+	public List<Run> findByNameLikeOrCommentsLike(String keyword) {
+		keyword = "%" + keyword + "%"; // could have used contains
+		return repo.findByNameLikeOrCommentsLike(keyword, keyword);
+	}
+	
+	@Override
+	public List<Run> findByDistanceBetween(Double lowest, Double highest) {
+		return repo.findByDistanceBetween(lowest, highest);
 	}
 	
 	
