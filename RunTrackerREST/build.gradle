@@ -12,12 +12,24 @@ repositories {
 	mavenCentral()
 }
 
+
+apply plugin: 'war'
+war {
+  enabled = true
+  archiveFileName = "${archivesBaseName}.war"
+  destinationDir = file("../")               // project workspace directory
+}
+
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation project (':RunTrackerJPA')
+	implementation ('org.springframework.boot:spring-boot-starter-tomcat')
+	
 }
 
 tasks.named('test') {
