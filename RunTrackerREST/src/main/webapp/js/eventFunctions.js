@@ -130,9 +130,24 @@ function editRun(run) {
 		updateForm.caloriesBurned.value = run.caloriesBurned;
 	}
 
-	let runUpdate = {
+	
+
+	
+	let runId = run.id;
+	
+	updateRunButton.addEventListener("click", function(e) {
+			e.preventDefault();
+			putRun(runId);
+
+		});
+
+}
+
+function putRun(runId) {
+	
+	let runToUpdate = {
 		// id: run.id,
-		name: updateForm.name.value,
+		name: document.createRunForm.name.value,
 		// startTime: updateForm.startTime.value,
 		// endTime: updateForm.endTime.value,
 		// distance: updateForm.distance.value,
@@ -140,20 +155,12 @@ function editRun(run) {
 		// coloriesBurned: updateForm.coloriesBurned.value,
 		// comments: updateForm.comments.value
 	};
-
-	console.log(runUpdate);
-
-	updateRunButton.addEventListener("click", putRun(runUpdate));
-
-}
-
-function putRun(runUpdate) {
-	putRun.preventDefault();
-
+	
+	console.log(runToUpdate);
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'api/runs/' + runUpdate.id);
+	xhr.open('PUT', 'api/runs/' + runId);
 	xhr.setRequestHeader("Content-type", "application/json");
-	console.log(runUpdate);
+	console.log(runToUpdate);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
@@ -166,8 +173,8 @@ function putRun(runUpdate) {
 			}
 		}
 	}
-	console.log(runUpdate);
-	xhr.send(JSON.stringify(runUpdate));
+	console.log(runToUpdate);
+	xhr.send(JSON.stringify(runToUpdate));
 
 }
 
@@ -230,15 +237,16 @@ function displayRuns(runs) {
 		row.appendChild(deleteTd);
 		runTbody.appendChild(row);
 
-		action.addEventListener("click", function() {
-			// let run = getRun(run.id);
+		action.addEventListener("click", function(e) {
+			e.preventDefault();
 			editRun(run);
 
 		});
-
-		deleteText.addEventListener("click", function(e) {
+		
+		deleteRunLink.addEventListener("click", function(e) {
 			e.preventDefault();
-			deleteRun(run.id);
+			let runIdtoDelete = run.id;
+			deleteRun(runIdtoDelete);
 
 		});
 
@@ -294,13 +302,10 @@ function displayRun(run) {
 
 }
 
-function deleteRun(runId) {
-	e.preventDefault();
-
-	console.log(run);
+function deleteRun(runIdtoDelete) {
 
 	let xhr = new XMLHttpRequest();
-	xhr.open('DELETE', 'api/runs/' + runId);
+	xhr.open('DELETE', 'api/runs/' + runIdtoDelete);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
@@ -310,14 +315,14 @@ function deleteRun(runId) {
 				displayRun(data);
 			}
 			else {
-				console.error("POST request failed.");
+				console.error("DELETE request failed.");
 				console.error(xhr.status + ': ' + xhr.responseText);
 			}
 		}
 	};
 
 	xhr.send();
-	getAllRuns();
+	
 }
 	
 
