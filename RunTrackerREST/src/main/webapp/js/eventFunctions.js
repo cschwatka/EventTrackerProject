@@ -148,28 +148,28 @@ function editRun(run) {
 }
 
 function putRun(runUpdate) {
-		putRun.preventDefault();
+	putRun.preventDefault();
 
-		let xhr = new XMLHttpRequest();
-		xhr.open('PUT', 'api/runs/' + runUpdate.id);
-		xhr.setRequestHeader("Content-type", "application/json");
-		console.log(runUpdate);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState === 4) {
-				if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
-					let data = JSON.parse(xhr.responseText);
-					console.log(data);
-				}
-				else {
-					console.error("PUT request failed.");
-					console.error(xhr.status + ': ' + xhr.responseText);
-				}
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', 'api/runs/' + runUpdate.id);
+	xhr.setRequestHeader("Content-type", "application/json");
+	console.log(runUpdate);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
+				let data = JSON.parse(xhr.responseText);
+				console.log(data);
+			}
+			else {
+				console.error("PUT request failed.");
+				console.error(xhr.status + ': ' + xhr.responseText);
 			}
 		}
-		console.log(runUpdate);
-		xhr.send(JSON.stringify(runUpdate));
-
 	}
+	console.log(runUpdate);
+	xhr.send(JSON.stringify(runUpdate));
+
+}
 
 
 
@@ -184,13 +184,21 @@ function displayRuns(runs) {
 		let startTime = document.createElement('td');
 		let endTime = document.createElement('td');
 		let distance = document.createElement('td');
-		let caloriesBurned = document.createElement('td');
+		// let caloriesBurned = document.createElement('td');
+		let actionTd = document.createElement('td');
 		let action = document.createElement('a');
+		let deleteTd = document.createElement('td');
+		let deleteRunLink = document.createElement('a');
 
 		let linkText = document.createTextNode("Edit");
 		action.appendChild(linkText);
 		action.title = "Edit";
 		action.id = "editLink";
+
+		let deleteText = document.createTextNode("Delete");
+		deleteRunLink.appendChild(deleteText);
+		deleteRunLink.title = "Delete";
+		deleteRunLink.id = "deleteLink";
 
 
 		id.textContent = run.id;
@@ -198,7 +206,9 @@ function displayRuns(runs) {
 		startTime.textContent = run.startTime;
 		endTime.textContent = run.endTime;
 		distance.textContent = run.distance;
-		caloriesBurned.textContent = run.caloriesBurned;
+		// caloriesBurned.textContent = run.caloriesBurned;
+		actionTd.appendChild(action);
+		deleteTd.appendChild(deleteRunLink);
 
 
 		id.className = "whitespace-nowrap px-2 py-2 text-sm text-gray-500";
@@ -206,16 +216,18 @@ function displayRuns(runs) {
 		startTime.className = "whitespace-nowrap px-2 py-2 text-sm text-gray-500";
 		endTime.className = "whitespace-nowrap px-2 py-2 text-sm text-gray-500";
 		distance.className = "whitespace-nowrap px-2 py-2 text-sm text-gray-500";
-		caloriesBurned.className = "whitespace-nowrap px-2 py-2 text-sm text-gray-500";
+		// caloriesBurned.className = "whitespace-nowrap px-2 py-2 text-sm text-gray-500";
 		action.className = "text-indigo-600 hover:text-indigo-900";
+		deleteRunLink.className = "text-red-600 hover:text-red-900";
 
 		row.appendChild(id);
 		row.appendChild(name);
 		row.appendChild(startTime);
 		row.appendChild(endTime);
 		row.appendChild(distance);
-		row.appendChild(caloriesBurned);
-		row.appendChild(action);
+		// row.appendChild(caloriesBurned);
+		row.appendChild(actionTd);
+		row.appendChild(deleteTd);
 		runTbody.appendChild(row);
 
 		action.addEventListener("click", function() {
@@ -223,6 +235,13 @@ function displayRuns(runs) {
 			editRun(run);
 
 		});
+
+		deleteText.addEventListener("click", function(e) {
+			e.preventDefault();
+			deleteRun(run.id);
+
+		});
+
 	})
 
 }
@@ -274,3 +293,31 @@ function displayRun(run) {
 	dataDiv.appendChild(ul);
 
 }
+
+function deleteRun(runId) {
+	e.preventDefault();
+
+	console.log(run);
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', 'api/runs/' + runId);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
+				let data = JSON.parse(xhr.responseText);
+				console.log(data);
+				displayRun(data);
+			}
+			else {
+				console.error("POST request failed.");
+				console.error(xhr.status + ': ' + xhr.responseText);
+			}
+		}
+	};
+
+	xhr.send();
+	getAllRuns();
+}
+	
+
