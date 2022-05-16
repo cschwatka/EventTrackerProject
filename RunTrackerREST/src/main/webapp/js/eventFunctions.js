@@ -84,7 +84,8 @@ function createRun(e) {
 			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
 				let data = JSON.parse(xhr.responseText);
 				console.log(data);
-				displayRun(data);
+				// displayRun(data);
+				getAllRuns();
 			}
 			else {
 				console.error("POST request failed.");
@@ -94,6 +95,8 @@ function createRun(e) {
 	};
 
 	xhr.send(JSON.stringify(run));
+	
+	
 }
 
 
@@ -148,12 +151,12 @@ function putRun(runId) {
 	let runToUpdate = {
 		// id: run.id,
 		name: document.createRunForm.name.value,
-		// startTime: updateForm.startTime.value,
-		// endTime: updateForm.endTime.value,
-		// distance: updateForm.distance.value,
-		// heartRate: updateForm.heartRate.value,
-		// coloriesBurned: updateForm.coloriesBurned.value,
-		// comments: updateForm.comments.value
+		startTime: document.createRunForm.startTime.value,
+		endTime: document.createRunForm.endTime.value,
+		distance: document.createRunForm.distance.value,
+		heartRate: document.createRunForm.heartRate.value,
+		coloriesBurned: document.createRunForm.coloriesBurned.value,
+		comments: document.createRunForm.comments.value
 	};
 	
 	console.log(runToUpdate);
@@ -166,6 +169,7 @@ function putRun(runId) {
 			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
 				let data = JSON.parse(xhr.responseText);
 				console.log(data);
+				getAllRuns();
 			}
 			else {
 				console.error("PUT request failed.");
@@ -175,6 +179,7 @@ function putRun(runId) {
 	}
 	console.log(runToUpdate);
 	xhr.send(JSON.stringify(runToUpdate));
+	
 
 }
 
