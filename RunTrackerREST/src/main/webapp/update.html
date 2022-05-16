@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Run Tracker</title>
+    <script src="js/eventFunctions.js" charset="utf-8"></script>
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <nav class="relative container mx-auto p-6">
+      <div class="flex items-center justify-between">
+        <div class="pt-2">
+            <img src="img/logo.png" alt="" />
+        </div>
+          <div class="hidden md:flex space-x-6">
+            <a href="#" class="hover:text-gray-500">Test</a>
+            <a href="#" class="hover:text-gray-500">Test</a>
+            <a href="#" class="hover:text-gray-500">Test</a>
+          </div>
+        </div>
+    </nav>
+
+
+
+    
+
+
+    
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-gray-50">
+      <!-- Content goes here -->
+
+
+
+      <!--
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<form name="updateRunForm" class="space-y-8 divide-y divide-gray-200">
+  <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+    <div>
+      <div>
+        <h3 class="pt-8 text-lg leading-6 font-medium text-gray-900">Updating Run ID: </h3>
+        
+      </div>
+
+
+      <div class="space-y-6 sm:space-y-5">
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <label for="startTime" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> Start Time: </label>
+          <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <input type="datetime-local" id="startTime" name="startTime" value="2022-05-12T19:30" min="2020-05-12T00:00" max="2025-05-12T00:00" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+          </div>
+        </div>
+
+        <div class="space-y-6 sm:space-y-5">
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="endTime" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> End Time: </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input type="datetime-local" id="endTime" name="endTime" value="2022-05-12T19:30" min="2020-05-12T00:00" max="2025-05-12T00:00" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+            </div>
+          </div>
+
+      <div class="space-y-6 sm:space-y-5">
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> Run name: </label>
+          <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <input type="text" name="name" id="name" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+          </div>
+        </div>
+
+        <div class="space-y-6 sm:space-y-5">
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="distance" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> Run Distance:  </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input type="number" name="distance" id="distance" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+            </div>
+          </div>
+
+          <div class="space-y-6 sm:space-y-5">
+            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+              <label for="heartRate" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> Heart Rate:  </label>
+              <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <input type="number" name="heartRate" id="heartRate" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+              </div>
+            </div>
+
+            <div class="space-y-6 sm:space-y-5">
+              <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                <label for="caloriesBurned" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> Calories Burned:  </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                  <input type="number" name="caloriesBurned" id="caloriesBurned" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                </div>
+              </div>
+
+
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <label for="comments" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> Comment </label>
+          <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <textarea id="comments" name="comments" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"></textarea>
+            <p class="mt-2 text-sm text-gray-500">Describe the run or make some notes.</p>
+          </div>
+        </div>
+
+
+
+
+
+  <div class="pt-5">
+    <div class="flex justify-center">
+      <button type="submit" name="create" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Run</button>
+    </div>
+   
+
+    
+  </div>
+</form>
+
+
+
+
+
+
+
+  
+
+  
+  
+
+  </body>
+</html>
