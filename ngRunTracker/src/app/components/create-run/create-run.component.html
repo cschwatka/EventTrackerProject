@@ -1,0 +1,63 @@
+
+    <div class="py-5">
+      <img class="d-block mx-auto mb-4" src="https://d2d69lvc7tiwu6.cloudfront.net/assets/static/adidas-runtastic-logo-a1f84643bbcadacdcd97b96e0fc0be96.png" alt="" height="32">
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+
+        <form>
+          <div class="mb-3">
+            <label for="name">Name Your Run</label>
+            <input type="name" class="form-control" name="name" id="name"  placeholder="Name Of Run"  [(ngModel)]="newRun.name">
+          </div>
+
+          <div class="mb-3">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" name="date" id="date" [(ngModel)]="newRun.date">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Start Time</label>
+              <input type="datetime-local" class="form-control" id="startTime" name="startTime" [(ngModel)]="newRun.startTime">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">End Time</label>
+              <input type="datetime-local" class="form-control" id="endTime" name="endTime" [(ngModel)]="newRun.endTime">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 mb-2">
+              <label for="cc-name">Distance</label>
+              <input type="number" class="form-control" name="distance" id="distance" [(ngModel)]="newRun.distance">
+            </div>
+            <div class="col-md-3 mb-2">
+              <label for="cc-name">Heart Rate</label>
+              <input type="number" class="form-control" name="heartRate" id="heartRate" [(ngModel)]="newRun.heartRate">
+            </div>
+            <div class="col-md-3 mb-2">
+              <label for="cc-name">Calories Burned</label>
+              <input type="number" class="form-control" name="coloriesBurned" id="coloriesBurned" [(ngModel)]="newRun.caloriesBurned">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address">Comments</label>
+            <textarea class="form-control" id="comments" name="comments" rows="3" [(ngModel)]="newRun.comments"></textarea>
+          </div>
+
+
+
+
+          <hr class="mb-4">
+
+          <div class="row justify-content-center" >
+            <button class="btn btn-primary btn-lg btn-block style=" style="max-width: 50%;" type="submit" (click)="createRun(newRun)">Create New Run</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+

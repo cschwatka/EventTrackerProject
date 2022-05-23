@@ -1,0 +1,173 @@
+<!-- list-view -->
+<!-- <table *ngIf="!selected">
+  <thead>
+    <tr>
+      <td>id</td>
+      <td>name</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="setRun(run)" *ngFor="let run of runs">
+      <td>{{run.id}}</td>
+      <td>{{run.name}}</td>
+    </tr>
+  </tbody>
+</table> -->
+
+<form>
+  <div class="m-3 row">
+    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Search anything:</label>
+    <div class="col-xs-3 col-sm-auto">
+      <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" (click)="showFiltered = true">
+    </div>
+  </div>
+</form>
+
+      <table *ngIf="showFiltered && !selected !runToEdit" class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Row #</th>
+          <th scope="col">Run ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Distance</th>
+          <th scope="col">Start Time</th>
+          <th scope="col">End Time</th>
+          <th scope="col">Heart Rate</th>
+          <th scope="col">Calories Burned</th>
+          <th scope="col">Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- <tr *ngFor="let country of countries$ | async; index as i"> -->
+        <tr *ngFor="let run of runs$ | async; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td><ngb-highlight [result]="run.id | number" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.name" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.date" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.distance | number" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.startTime" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.endTime" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.heartRate | number" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.caloriesBurned | number" [term]="filter.value"></ngb-highlight></td>
+          <td><ngb-highlight [result]="run.comments" [term]="filter.value"></ngb-highlight></td>
+          <td><button class="btn btn-primary btn-lg btn-block" type="submit" (click)="setRunToEdit(run)">Edit</button></td>
+          <td><button class="btn btn-primary btn-lg btn-block" type="submit" (click)="setRun(run)">Show</button></td>
+          <!-- <td><ngb-highlight [result]="run.mediaUrl | number" [term]="filter.value"></ngb-highlight></td> -->
+        </tr>
+        </tbody>
+      </table>
+
+
+      <table *ngIf="!showFiltered && !selected && !runToEdit" class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Row #</th>
+          <th scope="col">Run ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Distance</th>
+          <th scope="col">Start Time</th>
+          <th scope="col">End Time</th>
+          <th scope="col">Heart Rate</th>
+          <th scope="col">Calories Burned</th>
+          <th scope="col">Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- <tr *ngFor="let country of countries$ | async; index as i"> -->
+        <tr *ngFor="let run of runs; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{run.id}}</td>
+          <td>{{run.name}}</td>
+          <td>{{run.date}}</td>
+          <td>{{run.distance}}</td>
+          <td>{{run.startTime}}</td>
+          <td>{{run.endTime}}</td>
+          <td>{{run.heartRate}}</td>
+          <td>{{run.caloriesBurned}}</td>
+          <td>{{run.comments}}</td>
+          <td><button class="btn btn-primary btn-lg btn-block" type="submit" (click)="setRunToEdit(run)">Edit</button>
+          <button class="btn btn-secondary btn-lg btn-block mx-2" type="submit" (click)="setRun(run)">Show</button></td>
+        </tr>
+        </tbody>
+      </table>
+
+
+      <div *ngIf="selected">
+        <p>{{selected.id}}</p>
+        <p>{{selected.name | uppercase}}</p>
+        <p>{{selected.date}}</p>
+        <p>{{selected.distance | number: '1.1-1'}}</p>
+        <p>{{selected.startTime}}</p>
+        <p>{{selected.endTime}}</p>
+        <p>{{selected.heartRate | number: '1.1-1'}}</p>
+        <p>{{selected.caloriesBurned | number: '1.1-1'}}</p>
+        <p>{{selected.comments}}</p>
+        <button (click)="selected = null">Back</button>
+      </div>
+
+
+
+      <div *ngIf="runToEdit" class="row">
+        <h4>Edit Run: {{runToEdit.id}}</h4>
+        <div class="col-md-8 order-md-1">
+
+          <form>
+            <div class="mb-3">
+              <label for="name">Name Your Run</label>
+              <input type="name" class="form-control" name="name" id="name"  placeholder="Name Of Run"  [(ngModel)]="runToEdit.name">
+            </div>
+
+            <div class="mb-3">
+              <label for="date">Date</label>
+              <input type="date" class="form-control" name="date" id="date" [(ngModel)]="runToEdit.date">
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="cc-name">Start Time</label>
+                <input type="datetime-local" class="form-control" id="startTime" name="startTime" [(ngModel)]="runToEdit.startTime">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-name">End Time</label>
+                <input type="datetime-local" class="form-control" id="endTime" name="endTime" [(ngModel)]="runToEdit.endTime">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3 mb-2">
+                <label for="cc-name">Distance</label>
+                <input type="number" class="form-control" name="distance" id="distance" [(ngModel)]="runToEdit.distance">
+              </div>
+              <div class="col-md-3 mb-2">
+                <label for="cc-name">Heart Rate</label>
+                <input type="number" class="form-control" name="heartRate" id="heartRate" [(ngModel)]="runToEdit.heartRate">
+              </div>
+              <div class="col-md-3 mb-2">
+                <label for="cc-name">Calories Burned</label>
+                <input type="number" class="form-control" name="coloriesBurned" id="coloriesBurned" [(ngModel)]="runToEdit.caloriesBurned">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Comments</label>
+              <textarea class="form-control" id="comments" name="comments" rows="3" [(ngModel)]="runToEdit.comments"></textarea>
+            </div>
+
+
+
+
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="editRun(runToEdit)">Edit Run</button>
+            <button class="btn btn-secondary btn-lg btn-block mx-2" (click)="runToEdit = null">Back</button>
+          </form>
+        </div>
+      </div>
+
+
+
+
+
+
+<!-- <pre>{{ runs | json }}</pre> -->

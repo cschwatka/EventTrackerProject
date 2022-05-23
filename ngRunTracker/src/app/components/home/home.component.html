@@ -1,0 +1,17 @@
+<!-- list-view -->
+<table *ngIf="!selected">
+  <thead>
+    <tr>
+      <td>id</td>
+      <td>name</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="setRun(run)" *ngFor="let run of runs">
+      <td>{{run.id}}</td>
+      <td>{{run.name}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
