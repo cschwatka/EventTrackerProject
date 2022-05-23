@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Run } from 'src/app/models/run';
 import { RunService } from './../../services/run.service';
+import { Router } from '@angular/router';
 
 interface Country {
   name: string;
@@ -104,7 +105,7 @@ export class NgbdTableFiltering implements OnInit {
   //   );
   // }
 
-  constructor(pipe: DecimalPipe, private runService: RunService) {
+  constructor(pipe: DecimalPipe, private runService: RunService, private router: Router) {
     // this.countries$ = this.filter.valueChanges.pipe(
     //     startWith(''),
     //     map(text => search(text, pipe))
@@ -146,6 +147,13 @@ export class NgbdTableFiltering implements OnInit {
     );
   }
 
+  reload() {
+    this.runService.index().subscribe(
+      (success) => (this.runs = success),
+      (err) => console.log('Observable got an error ' + err)
+    );
+  }
+
   setRun(run: Run) {
     this.selected = run;
   }
@@ -162,6 +170,15 @@ export class NgbdTableFiltering implements OnInit {
       },
       (err) => console.log('Observable got an error ' + err)
     );
+  }
+
+  deleteRun(id: number) {
+    this.runService.destroy(id).subscribe(
+      data => this.reload(),
+      err => console.error(err)
+    );
+
+    this.router.navigate(['/runs'])
   }
 
 

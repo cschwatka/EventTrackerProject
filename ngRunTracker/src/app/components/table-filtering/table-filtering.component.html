@@ -14,6 +14,10 @@
   </tbody>
 </table> -->
 
+<div class="py-5">
+  <img class="d-block mx-auto mb-4" src="https://d2d69lvc7tiwu6.cloudfront.net/assets/static/adidas-runtastic-logo-a1f84643bbcadacdcd97b96e0fc0be96.png" alt="" height="32">
+</div>
+
 <form>
   <div class="m-3 row">
     <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Search anything:</label>
@@ -51,8 +55,9 @@
           <td><ngb-highlight [result]="run.heartRate | number" [term]="filter.value"></ngb-highlight></td>
           <td><ngb-highlight [result]="run.caloriesBurned | number" [term]="filter.value"></ngb-highlight></td>
           <td><ngb-highlight [result]="run.comments" [term]="filter.value"></ngb-highlight></td>
-          <td><button class="btn btn-primary btn-lg btn-block" type="submit" (click)="setRunToEdit(run)">Edit</button></td>
-          <td><button class="btn btn-primary btn-lg btn-block" type="submit" (click)="setRun(run)">Show</button></td>
+          <td><button class="btn btn-primary btn-md btn-block" type="submit" (click)="setRunToEdit(run)">Edit</button>
+            <button class="btn btn-secondary btn-md btn-block mx-2" type="submit" (click)="setRun(run)">Show</button>
+            <button class="btn btn-danger btn-md btn-block mx-2" type="submit" (click)="deleteRun(run.id)">Delete</button></td>
           <!-- <td><ngb-highlight [result]="run.mediaUrl | number" [term]="filter.value"></ngb-highlight></td> -->
         </tr>
         </tbody>
@@ -87,8 +92,9 @@
           <td>{{run.heartRate}}</td>
           <td>{{run.caloriesBurned}}</td>
           <td>{{run.comments}}</td>
-          <td><button class="btn btn-primary btn-lg btn-block" type="submit" (click)="setRunToEdit(run)">Edit</button>
-          <button class="btn btn-secondary btn-lg btn-block mx-2" type="submit" (click)="setRun(run)">Show</button></td>
+          <td><button class="btn btn-primary btn-md btn-block" type="submit" (click)="setRunToEdit(run)">Edit</button>
+          <button class="btn btn-secondary btn-md btn-block mx-2" type="submit" (click)="setRun(run)">Show</button>
+          <button class="btn btn-danger btn-md btn-block mx-2" type="submit" (click)="deleteRun(run.id)">Delete</button></td>
         </tr>
         </tbody>
       </table>

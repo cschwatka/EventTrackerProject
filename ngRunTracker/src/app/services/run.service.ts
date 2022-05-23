@@ -42,5 +42,15 @@ export class RunService {
       );
   }
 
+  destroy(id: number) {
+    return this.http.delete<void>(this.url +'/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('RunService: error deleting run');
+      })
+    );
+  }
+
+
 
 }
