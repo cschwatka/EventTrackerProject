@@ -2,7 +2,7 @@
 
 ## Angular
 
-http://34.199.50.15:8080
+http://34.199.50.15:8080/RunTrackerREST/
 
 ## API Endpoint Tests
 
